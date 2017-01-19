@@ -9,4 +9,12 @@ describe Player do
     end
   end
 
+  describe "#points" do
+    it "Defaults hit points to 100" do
+      expect(player.points).to eq 100
+    end
+     it "Deducts hit points" do
+       expect{player.points -= 10}.to change { player.points }.to 90
+     end
+  end
 end

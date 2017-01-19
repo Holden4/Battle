@@ -4,9 +4,9 @@
 </head>
 <body>
 <h1>Battle</h1>
-<p><%= @player_1_name %> vs. <%= @player_2_name %></p>
-<p>Hit points Player 1: <%= @p1_points %> </p>
-<p>Hit points Player 2: <%= @p2_points %></p>
+<p>  <%= $player_1.name %> vs. <%= $player_2.name %></p>
+<p>Hit points Player 1: <%= $player_1.points %> </p>
+<p>Hit points Player 2: <%= $player_2.points %></p>
 <% if session[:last_action] %>
 <br>
 <p><%= session[:last_action] %></p>
@@ -15,10 +15,6 @@
 <form action="/hit_p2" method="post">
   <input type="submit" value="Attack Player 2" />
 </form>
-
-<% if @attacker %>
-<p><%=@attacker%> is attacking!...</p>
-<% end %>
 
 </body>
 </html>
