@@ -19,9 +19,19 @@ describe Game do
     end
   end
 
-  it "Your are able to attack player 2" do
-    expect{ $game.attack }.to change { $game.player_2.points }.by (-10)
+  describe 'Changes the players turn' do
+    it  'attacks and changes' do
+      allow(player_2).to receive(:hp_deduct)
+        game.attack
+          expect(game.current_player).to eq player_2
+    end
   end
+
+  describe '#game_over?' do
+      it { is_expected.to respond_to(:game_over?)}
+  end
+
+
 
   describe '#turn_switch' do
     it 'expect current_player to #player_1' do

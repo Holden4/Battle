@@ -1,10 +1,11 @@
 class Game
 
-  attr_reader :players, :current_player
+  attr_reader :players, :current_player, :opposition
 
   def initialize(player_1, player_2)
     @players = [player_1, player_2]
     @current_player = player_1
+    @opposition = player_2
   end
 
   def player_1
@@ -16,16 +17,17 @@ class Game
   end
 
   def attack
-    player_2.hp_deduct
+    opposition.hp_deduct
     turn_switch
   end
 
-  def turn_switch
-    if @current_player == player_1
-      @current_player = player_2
-    elsif @current_player == player_2
-      @current_player = player_1
-    end
+  def game_over?
+      player_1.points == 0 || player_2.points == 0
   end
+
+  def turn_switch
+  @current_player, @opposition = @opposition, @current_player
+  end
+
 
 end

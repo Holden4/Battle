@@ -13,7 +13,7 @@ RSpec.feature "Capybara feature tests" do
 
   scenario "Attacks cause damage" do
     sign_in_and_play
-      click_button "Attack Player 2"
+      click_button "Attack"
         expect(page).to have_content "Hit points Ben: 90"
   end
 
@@ -24,7 +24,15 @@ RSpec.feature "Capybara feature tests" do
 
   scenario "Turn switches after attack" do
     sign_in_and_play
-      click_button "Attack Player 2"
+      click_button "Attack"
         expect(page).to have_content "Ben's turn"
   end
+
+
+    scenario "A player looses" do
+      sign_in_and_play
+        20.times { click_button "Attack" }
+          expect(page).to have_content "Ben has lost"
+    end
+
 end

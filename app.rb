@@ -22,12 +22,16 @@ class Battle < Sinatra::Base
     # session[:last_action] = nil
   end
 
-
   post '/hit_p2' do
-    session[:last_action] = "#{$game.player_1.name} is attacking"
     $game.attack
-    redirect '/play'
+    redirect '/play' unless $game.game_over?
+    redirect '/game_over'
   end
+
+  get '/game_over' do
+    erb :game_over
+  end
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
