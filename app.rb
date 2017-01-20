@@ -3,6 +3,11 @@ require './lib/player'
 require './lib/game'
 
 class Battle < Sinatra::Base
+
+  before do
+    @game = Game.instance
+  end
+
   enable :sessions
   get '/' do
     erb :index
@@ -11,20 +16,17 @@ class Battle < Sinatra::Base
   post '/names' do
     rob = Player.new(params[:player_1_name])
     ben = Player.new(params[:player_2_name])
-    $game = Game.new(rob, ben)
-
+    @game = Game.create(rob, ben)
     redirect '/play'
   end
 
   get '/play' do
-    # @last_action = session[:last_action] ? session[:last_action] : nil
     erb :play
-    # session[:last_action] = nil
   end
 
   post '/hit_p2' do
-    $game.attack
-    redirect '/play' unless $game.game_over?
+    @game.attack
+    redirect '/play' unless @game.game_over?
     redirect '/game_over'
   end
 

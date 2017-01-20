@@ -31,8 +31,8 @@ RSpec.feature "Capybara feature tests" do
 
     scenario "A player looses" do
       sign_in_and_play
-        20.times { click_button "Attack" }
-          expect(page).to have_content "Ben has lost"
+        19.times { click_button "Attack" }
+          expect(page).to have_content "Rob WINS!"
     end
 
 end

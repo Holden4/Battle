@@ -4,13 +4,13 @@
 </head>
 <body>
 <h1>Battle</h1>
-<% if $game.player_1.points < 100 || $game.player_2.points < 100 %>
-<h2> <%= $game.opposition.name %> Has bludgened a blow </h2>
+<% if @game.player_1.points < 100 || @game.player_2.points < 100 %>
+<h2> <%= @game.opposition.name %> Has bludgened a blow </h2>
 <% end %>
-<p>  <%= $game.player_1.name %> vs. <%= $game.player_2.name %></p>
-<p>Hit points <%= $game.player_1.name %>: <%= $game.player_1.points %> </p>
-<p>Hit points <%= $game.player_2.name %>: <%= $game.player_2.points %></p>
-<p> <%= $game.current_player.name %>'s turn </p>
+<p>  <%= @game.player_1.name %> vs. <%= @game.player_2.name %></p>
+<p>Hit points <%= @game.player_1.name %>: <%= @game.player_1.points %> </p>
+<p>Hit points <%=@game.player_2.name %>: <%= @game.player_2.points %></p>
+<p> <%= @game.current_player.name %>'s turn </p>
 <% if session[:last_action] %>
 <br>
 <p><%= session[:last_action] %></p>
