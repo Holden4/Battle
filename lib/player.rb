@@ -10,5 +10,9 @@ class Player
       @points = 100
   end
 
+  def hp_deduct
+    @points -= 10
+  end
+
 
 end
